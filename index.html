@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scent Verse — Luxury Beyond Scent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --gold: #c9a96e;
+    --gold-light: #e8d5a3;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --gray: #6b6b6b;
+    --light-gray: #e8e8e8;
+    --card-bg: #111111;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement {
+    background: var(--gold);
+    color: var(--black);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+  .announcement-inner {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 18s linear infinite;
+  }
+  @keyframes marquee {
+    0%   { transform: translateX(100vw); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--white);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--gold); }
+
+  nav { display: flex; gap: 2.5rem; }
+  nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  nav a:hover { color: var(--gold); }
+
+  .header-icons { display: flex; gap: 1.2rem; align-items: center; }
+  .header-icons button {
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.75);
+    font-size: 1.1rem; padding: 4px;
+    transition: var(--transition);
+  }
+  .header-icons button:hover { color: var(--gold); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--white);
+    display: block;
+    transition: var(--transition);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5%;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-text { z-index: 1; }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 15px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,169,110,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 15px 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-img-frame {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .hero-img-frame img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+  }
+
+  .hero-img-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,169,110,0.15));
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 110px;
+    height: 110px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--black);
+    animation: rotateBadge 12s linear infinite;
+  }
+  .hero-badge .big { font-size: 1.5rem; font-weight: 700; line-height: 1; }
+  .hero-badge .small { font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+
+  @keyframes rotateBadge {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: #0f0f0f;
+    border-top: 1px solid rgba(201,169,110,0.15);
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+    padding: 28px 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat {
+    text-align: center;
+    padding: 0 1rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 90px 5%; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-line {
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin: 1.5rem auto 0;
+  }
+
+  /* ── PRODUCTS ── */
+  #shop { background: #050505; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .product-card {
+    background: #0e0e0e;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    group: true;
+  }
+  .product-card:hover { background: #141414; }
+
+  .product-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background: #1a1a1a;
+  }
+
+  .product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
+  }
+  .product-card:hover .product-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  /* placeholder when image not found */
+  .product-img-wrap img[src=""] ,
+  .img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    z-index: 2;
+  }
+
+  .product-info {
+    padding: 24px 28px 28px;
+    border-top: 1px solid rgba(201,169,110,0.12);
+  }
+
+  .product-inspired {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .product-notes {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .product-price-wrap { display: flex; flex-direction: column; }
+  .product-price {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+  .product-mrp {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: line-through;
+  }
+  .product-discount {
+    font-size: 0.62rem;
+    color: #5dba7a;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .btn-buy {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 12px 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-buy:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(201,169,110,0.35);
+  }
+
+  /* wide card for row of 2 */
+  .product-card.wide { grid-column: span 1; }
+  .products-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  /* ── BENEFITS ── */
+  #benefits { background: var(--black); }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+  }
+
+  .benefit-card {
+    background: #0e0e0e;
+    padding: 44px 28px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+  .benefit-card:hover::before { transform: scaleX(1); }
+  .benefit-card:hover { background: #141414; }
+
+  .benefit-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .benefit-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .benefit-desc {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #reviews { background: #050505; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .review-card {
+    background: #0e0e0e;
+    padding: 36px 32px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .review-stars {
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #8b6914);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.85rem; color: var(--black);
+  }
+  .review-name { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; }
+  .review-location { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+  /* ── PROMISE SECTION ── */
+  .promise {
+    background: var(--gold);
+    padding: 80px 5%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 4rem;
+  }
+  .promise-text h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--black);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .promise-text p {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.65);
+    line-height: 1.8;
+    max-width: 560px;
+  }
+  .promise-cta .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 17px 44px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+    white-space: nowrap;
+  }
+  .promise-cta .btn-dark:hover {
+    background: #222;
+    transform: translateY(-2px);
+  }
+
+  /* ── HOW IT WORKS ── */
+  #process { background: var(--black); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    background: var(--black);
+  }
+  .step h4 {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+  }
+  .step p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(201,169,110,0.15);
+    padding: 60px 5% 30px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand .logo { display: block; margin-bottom: 1rem; font-size: 1.5rem; }
+  .footer-brand p {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+    max-width: 280px;
+    font-weight: 300;
+  }
+  .footer-socials { display: flex; gap: 12px; margin-top: 1.5rem; }
+  .social-btn {
+    width: 38px; height: 38px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-col h5 {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.65rem; }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 0.78rem;
+    transition: var(--transition);
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-bottom p {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+  .footer-bottom span { color: var(--gold); }
+
+  /* ── CHATBOT ── */
+  .chatbot-bubble {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+  }
+
+  .chat-btn {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 8px 30px rgba(201,169,110,0.4);
+    transition: var(--transition);
+  }
+  .chat-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(201,169,110,0.55);
+  }
+
+  .chat-window {
+    position: absolute;
+    bottom: 76px;
+    right: 0;
+    width: 320px;
+    background: #111;
+    border: 1px solid rgba(201,169,110,0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  }
+  .chat-window.open { display: flex; }
+
+  .chat-header {
+    background: var(--gold);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--black);
+  }
+  .chat-header-info { display: flex; align-items: center; gap: 10px; }
+  .chat-avatar {
+    width: 34px; height: 34px;
+    background: var(--black);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .chat-header-text .name { font-size: 0.82rem; font-weight: 700; }
+  .chat-header-text .status {
+    font-size: 0.62rem;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .chat-header-text .status::before {
+    content: ''; width: 6px; height: 6px;
+    background: #2ecc71; border-radius: 50%; display: inline-block;
+  }
+  .chat-close { background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--black); }
+
+  .chat-messages {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 260px;
+    overflow-y: auto;
+    background: #0d0d0d;
+  }
+
+  .msg {
+    max-width: 82%;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+  .msg.bot {
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 0 12px 12px 12px;
+    color: rgba(255,255,255,0.85);
+    align-self: flex-start;
+  }
+  .msg.user {
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 12px 12px 0 12px;
+    align-self: flex-end;
+    font-weight: 600;
+  }
+
+  .chat-quick {
+    padding: 12px 14px 8px;
+    background: #0d0d0d;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .quick-btn {
+    background: none;
+    border: 1px solid rgba(201,169,110,0.35);
+    color: var(--gold);
+    font-size: 0.65rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em;
+  }
+  .quick-btn:hover { background: rgba(201,169,110,0.1); }
+
+  .chat-input-row {
+    display: flex;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    background: #111;
+  }
+  .chat-input-row input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px 14px;
+    color: var(--white);
+    font-size: 0.78rem;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+  }
+  .chat-input-row input::placeholder { color: rgba(255,255,255,0.3); }
+  .chat-send {
+    background: var(--gold);
+    border: none;
+    width: 44px;
+    cursor: pointer;
+    color: var(--black);
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+  .chat-send:hover { background: var(--gold-light); }
+
+  /* Notification dot */
+  .notif-dot {
+    position: absolute;
+    top: 2px; right: 2px;
+    width: 14px; height: 14px;
+    background: #e74c3c;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.5rem; font-weight: 700; color: #fff;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 44px; height: 44px;
+    background: rgba(201,169,110,0.15);
+    border: 1px solid rgba(201,169,110,0.4);
+    color: var(--gold);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    z-index: 998;
+  }
+  .scroll-top.show { display: flex; }
+  .scroll-top:hover { background: var(--gold); color: var(--black); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 0 4%; }
+    nav, .header-icons { display: none; }
+    .hamburger { display: flex; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding: 60px 5% 50px;
+      text-align: center;
+    }
+    .hero-eyebrow { justify-content: center; }
+    .hero p { margin: 0 auto 2rem; }
+    .hero-cta { justify-content: center; }
+    .hero-visual { order: -1; margin-bottom: 2rem; }
+    .hero-badge { bottom: -10px; left: 0; width: 90px; height: 90px; }
+    .hero-badge .big { font-size: 1.2rem; }
+
+    .products-grid { grid-template-columns: 1fr; gap: 1px; }
+    .products-row-2 { grid-template-columns: 1fr; }
+
+    .benefits-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+
+    .reviews-grid { grid-template-columns: 1fr; gap: 2px; }
+
+    .promise {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: center;
+    }
+    .promise-cta { text-align: center; }
+
+    .process-steps {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .process-steps::before { display: none; }
+
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 1rem; }
+    .stat:last-child, .stat:nth-last-child(-n+2) { border-bottom: none; }
+
+    .chat-window { width: 290px; right: -10px; }
+    .scroll-top { bottom: 90px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2.5rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .btn-primary, .btn-secondary { padding: 14px 28px; }
+  }
+
+  /* ── FADE IN ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  <span class="announcement-inner">
+    🎁 FREE SHIPPING ON ORDERS ABOVE ₹1499 &nbsp;&nbsp;✦&nbsp;&nbsp; 
+    USE CODE <strong>VERSE10</strong> FOR 10% OFF &nbsp;&nbsp;✦&nbsp;&nbsp; 
+    HALF-PRICE SALE LIVE — FLAT 40% OFF &nbsp;&nbsp;✦&nbsp;&nbsp;
+    LUXURY EXTRAIT DE PARFUM • 50ML • LONG LASTING 8–12 HOURS &nbsp;&nbsp;✦&nbsp;&nbsp;
+    🎁 FREE SHIPPING ON ORDERS ABOVE ₹1499 &nbsp;&nbsp;✦&nbsp;&nbsp;
+    USE CODE <strong>VERSE10</strong> FOR 10% OFF &nbsp;&nbsp;✦&nbsp;&nbsp;
+    HALF-PRICE SALE LIVE — FLAT 40% OFF
+  </span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">Scent<span> Verse</span></a>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#benefits">Why Us</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="header-icons">
+    <button title="Search">🔍</button>
+    <button title="Account">👤</button>
+    <button title="Cart">🛒</button>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" title="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text fade-in">
+    <p class="hero-eyebrow">Luxury Beyond Scent</p>
+    <h1>Wear<br><em>Luxury.</em><br>Not Labels.</h1>
+    <p>Premium Extrait de Parfum crafted from the finest aromatic oils — inspired by the world's most coveted fragrances. At a fraction of the price.</p>
+    <div class="hero-cta">
+      <a href="#shop" class="btn-primary">Shop Collection</a>
+      <a href="#benefits" class="btn-secondary">Our Promise</a>
+    </div>
+  </div>
+  <div class="hero-visual fade-in" style="animation-delay:0.2s">
+    <div class="hero-img-frame">
+      <img src="img1.jpg" alt="Scent Verse Premium Perfume" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="img-placeholder" style="display:none; height:600px; background:linear-gradient(145deg,#1a1209,#3d2d0f); color:#c9a96e; font-family:'Cormorant Garamond',serif; font-size:1.8rem; text-align:center; padding:2rem; flex-direction:column; gap:1rem;">
+        <span style="font-size:3rem">🌸</span>
+        <span>Scent Verse</span>
+        <span style="font-size:0.8rem; opacity:0.6">Luxury Beyond Scent</span>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="big">50</span>
+      <span class="small">ML Pure<br>Extrait</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat fade-in">
+    <span class="stat-num">5,000+</span>
+    <span class="stat-label">Happy Customers</span>
+  </div>
+  <div class="stat fade-in">
+    <span class="stat-num">40+</span>
+    <span class="stat-label">Premium Fragrances</span>
+  </div>
+  <div class="stat fade-in">
+    <span class="stat-num">8–12h</span>
+    <span class="stat-label">Lasting Power</span>
+  </div>
+  <div class="stat fade-in">
+    <span class="stat-num">4.8 ★</span>
+    <span class="stat-label">Customer Rating</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="shop">
+  <div class="section-header fade-in">
+    <span class="section-eyebrow">Our Collection</span>
+    <h2 class="section-title">Inspired by the <em>Finest</em></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="products-grid">
+    <!-- Product 1 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge">Bestseller</span>
+        <img src="img1.jpg" alt="Ombre Leather Inspired" onerror="this.style.display='none'">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">Inspired by Tom Ford</span>
+        <h3 class="product-name">Ombré Leather</h3>
+        <p class="product-notes">Cardamom · Leather · Jasmine · Amber · Vetiver</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">40% OFF</span>
+          </div>
+          <a href="https://rzp.io/rzp/YOUR_PAYMENT_LINK" class="btn-buy" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge">New Arrival</span>
+        <img src="img2.jpg" alt="Khamrah Inspired" onerror="this.style.display='none'">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">Inspired by Lattafa</span>
+        <h3 class="product-name">Khamrah</h3>
+        <p class="product-notes">Plum · Rose · Vanilla · Oud · Amber · Musk</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">40% OFF</span>
+          </div>
+          <a href="https://rzp.io/rzp/YOUR_PAYMENT_LINK" class="btn-buy" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="img3.jpg" alt="LV Imagination Inspired" onerror="this.style.display='none'">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">Inspired by Louis Vuitton</span>
+        <h3 class="product-name">Imagination</h3>
+        <p class="product-notes">Citrus · Bergamot · Cedar · Woods · Amber</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">40% OFF</span>
+          </div>
+          <a href="https://rzp.io/rzp/YOUR_PAYMENT_LINK" class="btn-buy" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="products-row-2">
+    <!-- Product 4 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge">For Her</span>
+        <img src="img4.jpg" alt="Good Girl Inspired" onerror="this.style.display='none'">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">Inspired by Carolina Herrera</span>
+        <h3 class="product-name">Good Girl</h3>
+        <p class="product-notes">Jasmine · Tonka Bean · Coffee · Cacao · Sandalwood</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">40% OFF</span>
+          </div>
+          <a href="https://rzp.io/rzp/YOUR_PAYMENT_LINK" class="btn-buy" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge">Arabic Luxury</span>
+        <img src="img5.jpg" alt="Oud & Roses Inspired" onerror="this.style.display='none'">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">Original Blend</span>
+        <h3 class="product-name">Oud & Roses</h3>
+        <p class="product-notes">Bulgarian Rose · Oud · Sandalwood · Amber · Musk</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">40% OFF</span>
+          </div>
+          <a href="https://rzp.io/rzp/YOUR_PAYMENT_LINK" class="btn-buy" target="_blank">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="section-header fade-in">
+    <span class="section-eyebrow">The Scent Verse Promise</span>
+    <h2 class="section-title">Why Choose <em>Us</em>?</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card fade-in">
+      <span class="benefit-icon">💎</span>
+      <h3 class="benefit-title">Premium Extrait</h3>
+      <p class="benefit-desc">Our 50ML Extrait de Parfum contains up to 30% pure fragrance concentrate — significantly higher than standard EDPs. Richer. Deeper. More complex.</p>
+    </div>
+    <div class="benefit-card fade-in">
+      <span class="benefit-icon">⏱️</span>
+      <h3 class="benefit-title">8–12 Hour Longevity</h3>
+      <p class="benefit-desc">Carefully selected fixatives and base notes ensure your fragrance stays with you all day and evening — from morning meetings to midnight memories.</p>
+    </div>
+    <div class="benefit-card fade-in">
+      <span class="benefit-icon">🌿</span>
+      <h3 class="benefit-title">Finest Aromatic Oils</h3>
+      <p class="benefit-desc">We source premium aroma molecules and natural isolates from certified suppliers. Every bottle is crafted with care and attention to olfactory excellence.</p>
+    </div>
+    <div class="benefit-card fade-in">
+      <span class="benefit-icon">✨</span>
+      <h3 class="benefit-title">Affordable Luxury</h3>
+      <p class="benefit-desc">Why pay ₹15,000–₹30,000 for the original when our inspired version delivers 90% of the experience at 5% of the cost? Luxury democratised.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE BANNER -->
+<div class="promise fade-in">
+  <div class="promise-text">
+    <h2>Experience Luxury<br>Without the Guilt</h2>
+    <p>Every Scent Verse fragrance is a love letter to iconic perfumery — crafted for those who appreciate beautiful scent without the designer price tag. Your signature scent awaits.</p>
+  </div>
+  <div class="promise-cta">
+    <a href="#shop" class="btn-dark">Shop All Fragrances</a>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="process">
+  <div class="section-header fade-in">
+    <span class="section-eyebrow">Simple & Secure</span>
+    <h2 class="section-title">How It <em>Works</em></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="process-steps">
+    <div class="step fade-in">
+      <div class="step-num">01</div>
+      <h4>Choose Your Scent</h4>
+      <p>Browse our curated collection of inspired Extrait de Parfums and find your perfect match.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">02</div>
+      <h4>Secure Payment</h4>
+      <p>Pay safely via Razorpay — UPI, Cards, Net Banking all accepted. 100% secure checkout.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">03</div>
+      <h4>Fast Dispatch</h4>
+      <p>Orders packed and dispatched within 24 hours. Pan-India delivery in 3–5 business days.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">04</div>
+      <h4>Wear & Love</h4>
+      <p>Apply on pulse points, enjoy the compliments, and experience luxury beyond the label.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header fade-in">
+    <span class="section-eyebrow">Customer Love</span>
+    <h2 class="section-title">What They're <em>Saying</em></h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card fade-in">
+      <span class="review-stars">★★★★★</span>
+      <p class="review-text">"I bought the Ombré Leather version and I cannot tell the difference from the original I wore at the mall. Lasts all day on my skin. Absolutely worth every rupee!"</p>
+      <div class="review-author">
+        <div class="review-avatar">RK</div>
+        <div>
+          <p class="review-name">Rahul K.</p>
+          <p class="review-location">Delhi, India</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-in">
+      <span class="review-stars">★★★★★</span>
+      <p class="review-text">"The Good Girl inspired one is so feminine and bold! Got so many compliments at work. The packaging is beautiful too. Will definitely order more!"</p>
+      <div class="review-author">
+        <div class="review-avatar">PS</div>
+        <div>
+          <p class="review-name">Priya S.</p>
+          <p class="review-location">Mumbai, India</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card fade-in">
+      <span class="review-stars">★★★★☆</span>
+      <p class="review-text">"Khamrah inspired fragrance is stunning — deep, warm and absolutely oriental. The longevity is fantastic. Scent Verse is my go-to for gifting now."</p>
+      <div class="review-author">
+        <div class="review-avatar">AM</div>
+        <div>
+          <p class="review-name">Arjun M.</p>
+          <p class="review-location">Bangalore, India</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">Scent<span> Verse</span></a>
+      <p>Luxury Beyond Scent. We craft premium Extrait de Parfum inspired by the world's finest fragrances — making olfactory luxury accessible for everyone.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" title="Instagram">📷</a>
+        <a class="social-btn" href="#" title="WhatsApp">💬</a>
+        <a class="social-btn" href="#" title="Facebook">👍</a>
+        <a class="social-btn" href="#" title="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#shop">All Fragrances</a></li>
+        <li><a href="#shop">For Him</a></li>
+        <li><a href="#shop">For Her</a></li>
+        <li><a href="#shop">Arabic Collection</a></li>
+        <li><a href="#shop">Gift Sets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Help</h5>
+      <ul>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:hello@scentverse.in">hello@scentverse.in</a></li>
+        <li><a href="https://wa.me/91XXXXXXXXXX">WhatsApp Us</a></li>
+        <li><a href="#">Instagram DM</a></li>
+        <li style="color:rgba(255,255,255,0.3); font-size:0.72rem; margin-top:1rem;">Mon–Sat · 10AM–7PM IST</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 <span>Scent Verse</span>. All Rights Reserved. | Inspired fragrances are not affiliated with original brands.</p>
+    <p>Made with ♥ in India</p>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<!-- CHATBOT -->
+<div class="chatbot-bubble">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">🌸</div>
+        <div class="chat-header-text">
+          <p class="name">Scent Verse Support</p>
+          <p class="status">Online Now</p>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">Hi! 👋 Welcome to Scent Verse. How can I help you today?</div>
+    </div>
+    <div class="chat-quick">
+      <button class="quick-btn" onclick="quickMsg('What fragrances are available?')">Our Fragrances</button>
+      <button class="quick-btn" onclick="quickMsg('How long does delivery take?')">Delivery</button>
+      <button class="quick-btn" onclick="quickMsg('What is the price?')">Pricing</button>
+      <button class="quick-btn" onclick="quickMsg('Is COD available?')">COD?</button>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChat()">
+      <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+
+  <button class="chat-btn" onclick="toggleChat()" title="Chat with us">
+    💬
+    <span class="notif-dot">1</span>
+  </button>
+</div>
+
+<script>
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Scroll to top button
+  const scrollBtn = document.querySelector('.scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('show', window.scrollY > 500);
+  });
+
+  // ── CHATBOT ──
+  const responses = {
+    'fragrances': 'We offer 5 premium inspired fragrances: Ombré Leather, Khamrah, Imagination, Good Girl, and Oud & Roses. All 50ML Extrait de Parfum at ₹1,199! 🌹',
+    'delivery': 'We dispatch within 24 hours! Pan-India delivery takes 3–5 business days. Free shipping on orders above ₹1,499 ✈️',
+    'price': 'All our fragrances are priced at just ₹1,199 (MRP ₹1,999). That\'s 40% off on premium quality! 💰',
+    'cod': 'Yes! COD is available on select pin codes. Please place your order and check availability at checkout. 📦',
+    'default': 'Thanks for reaching out! For quick help, you can also WhatsApp us or email hello@scentverse.in 😊'
+  };
+
+  function getResponse(msg) {
+    msg = msg.toLowerCase();
+    if (msg.includes('fragrance') || msg.includes('available') || msg.includes('perfume')) return responses.fragrances;
+    if (msg.includes('delivery') || msg.includes('shipping') || msg.includes('ship')) return responses.delivery;
+    if (msg.includes('price') || msg.includes('cost') || msg.includes('rate')) return responses.price;
+    if (msg.includes('cod') || msg.includes('cash')) return responses.cod;
+    return responses.default;
+  }
+
+  function toggleChat() {
+    const win = document.getElementById('chatWindow');
+    win.classList.toggle('open');
+    document.querySelector('.notif-dot').style.display = 'none';
+  }
+
+  function quickMsg(msg) {
+    addMsg(msg, 'user');
+    setTimeout(() => addMsg(getResponse(msg), 'bot'), 600);
+  }
+
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg) return;
+    addMsg(msg, 'user');
+    input.value = '';
+    setTimeout(() => addMsg(getResponse(msg), 'bot'), 700);
+  }
+
+  function addMsg(text, type) {
+    const msgs = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = `msg ${type}`;
+    div.textContent = text;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  // ── MOBILE MENU ──
+  function toggleMenu() {
+    const nav = document.querySelector('nav');
+    const icons = document.querySelector('.header-icons');
+    const isOpen = nav.style.display === 'flex';
+    if (isOpen) {
+      nav.style.display = '';
+      icons.style.display = '';
+    } else {
+      Object.assign(nav.style, {
+        display: 'flex', flexDirection: 'column',
+        position: 'absolute', top: '72px', left: 0, right: 0,
+        background: '#0a0a0a', padding: '1.5rem 5%',
+        borderBottom: '1px solid rgba(201,169,110,0.2)',
+        gap: '1.2rem', zIndex: '9999'
+      });
+      Object.assign(icons.style, {
+        display: 'flex', position: 'absolute', top: '148px',
+        right: '5%', zIndex: '9999'
+      });
+    }
+  }
+</script>
+</body>
+</html>
