@@ -991,6 +991,50 @@
     opacity: 1;
     transform: translateY(0);
   }
+  .powered-by-btn {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: #888;
+  transition: 0.3s;
+}
+
+/* Static part */
+.powered-by-btn:hover {
+  color: #aaa;
+}
+
+/* Animated Bharat Bytes */
+.bb-text {
+  color: #c9a34e;
+  font-weight: 600;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* Underline animation */
+.bb-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 1px;
+  background: #c9a34e;
+  transition: width 0.3s ease;
+}
+
+/* Glow + underline only on hover */
+.powered-by-btn:hover .bb-text {
+  color: #e0b95a;
+  text-shadow: 0 0 6px rgba(201, 163, 78, 0.6);
+}
+
+.powered-by-btn:hover .bb-text::after {
+  width: 100%;
+}
 </style>
 </head>
 <body>
@@ -1359,7 +1403,9 @@
   <div class="footer-bottom">
     <p>© 2026 <span>Scent Verse</span>. All Rights Reserved. | Inspired fragrances are not affiliated with original brands.</p>
     <p>Made with ♥ in India</p>
-    <a href="https://bharatytesofficial2-code.github.io/bharatbytes/" class="powered-by-btn">Powered by – Bharat Bytes</a>
+    <a href="https://bharatytesofficial2-code.github.io/bharatbytes/" class="powered-by-btn" target="_blank" rel="noopener noreferrer">
+  Powered by <span class="bb-text">Bharat Bytes</span>
+</a>
 </div>
   </div>
 </footer>
