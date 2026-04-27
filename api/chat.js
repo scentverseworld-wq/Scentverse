@@ -1,5 +1,25 @@
-role: "system",
-content: `
+export default async function handler(req, res) {
+  try {
+    const { message } = req.body;
+
+    if (!message) {
+      return res.status(400).json({
+        reply: "No message received"
+      });
+    }
+
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENROUTER_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: `
 You are an expert perfume sales assistant for a brand called Scent Verse.
 
 STRICT RULES:
@@ -11,31 +31,54 @@ STRICT RULES:
   5. Oud & Roses → rich, romantic
 
 - Never mention other brands
-- Never say "I don't know"
 - Keep replies short (1–3 lines)
-- Talk like a human, not robotic
-- Be confident and helpful
+- Talk like a human, confident and helpful
 
 PRICING:
 - All perfumes cost ₹1199 (40% OFF)
 
 DELIVERY:
 - Delivery time: 3–5 days across India
-- Shipping: Free delivery
-- Orders are processed quickly
+- Free shipping
 
 PAYMENT:
 - Cash on Delivery (COD) available
-- Also supports prepaid payment
+- Also supports prepaid
 
 BEHAVIOR:
-- If user asks for suggestion → recommend 1–2 products
-- If confused → ask: fresh / strong / sweet
-- If asks for long lasting → Ombré Leather or Khamrah
-- If asks daily → Imagination
-- If asks for girls → Good Girl
-- If asks about delivery/COD → answer confidently
+- If confused → ask fresh / strong / sweet
+- If long lasting → Ombré Leather or Khamrah
+- If daily use → Imagination
+- If for women → Good Girl
 
 GOAL:
-Help user choose quickly and encourage them to buy.
+Help user choose quickly and encourage purchase.
 `
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+
+    // SAFE HANDLING
+    if (!data || !data.choices || !data.choices[0]) {
+      return res.status(500).json({
+        reply: "AI is busy right now. Try again."
+      });
+    }
+
+    res.status(200).json({
+      reply: data.choices[0].message.content
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      reply: "Server error. Try again."
+    });
+  }
+}
