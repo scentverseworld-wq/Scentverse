@@ -42,7 +42,7 @@ DELIVERY:
 - Free shipping
 
 PAYMENT:
-- Cash on Delivery (COD) available
+- Cash on Delivery (COD) is not available
 - Also supports prepaid
 
 BEHAVIOR:
