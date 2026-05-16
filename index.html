@@ -129,6 +129,38 @@
   }
   .header-icons button:hover { transform: scale(1.2); }
 
+  /* Cart Button in Header */
+  .cart-header-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.15rem;
+    padding: 6px;
+    transition: transform 0.3s;
+  }
+  .cart-header-btn:hover { transform: scale(1.2); }
+  .cart-badge {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    min-width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: white;
+    font-size: 0.55rem;
+    font-weight: 800;
+    border-radius: 50px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    font-family: 'Outfit', sans-serif;
+    border: 2px solid var(--bg);
+    line-height: 1;
+  }
+  .cart-badge.show { display: flex; }
+
   .hamburger {
     display: none; flex-direction: column; gap: 5px;
     cursor: pointer; background: none; border: none; padding: 4px;
@@ -151,7 +183,6 @@
     overflow: hidden;
   }
 
-  /* Blob backgrounds */
   .blob {
     position: absolute;
     border-radius: 50%;
@@ -160,24 +191,9 @@
     pointer-events: none;
     animation: blobFloat 8s ease-in-out infinite;
   }
-  .blob-1 {
-    width: 500px; height: 500px;
-    background: var(--pink);
-    top: -100px; right: -100px;
-    animation-delay: 0s;
-  }
-  .blob-2 {
-    width: 400px; height: 400px;
-    background: var(--teal);
-    bottom: -50px; left: 5%;
-    animation-delay: -3s;
-  }
-  .blob-3 {
-    width: 300px; height: 300px;
-    background: var(--yellow);
-    top: 30%; left: 40%;
-    animation-delay: -5s;
-  }
+  .blob-1 { width: 500px; height: 500px; background: var(--pink); top: -100px; right: -100px; animation-delay: 0s; }
+  .blob-2 { width: 400px; height: 400px; background: var(--teal); bottom: -50px; left: 5%; animation-delay: -3s; }
+  .blob-3 { width: 300px; height: 300px; background: var(--yellow); top: 30%; left: 40%; animation-delay: -5s; }
   @keyframes blobFloat {
     0%, 100% { transform: translate(0,0) scale(1); }
     33% { transform: translate(20px,-20px) scale(1.05); }
@@ -443,10 +459,10 @@
   #shop { background: var(--bg); }
 
   .products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
 
   .product-card {
     background: var(--white);
@@ -464,7 +480,6 @@
     border-color: rgba(255,45,120,0.2);
   }
 
-  /* Colorful top accent per card */
   .product-card:nth-child(1)::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--pink), var(--purple)); }
   .product-card:nth-child(2)::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--teal), var(--orange)); }
   .product-card:nth-child(3)::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--purple), var(--pink)); }
@@ -556,23 +571,35 @@
     background: linear-gradient(135deg, var(--pink), var(--purple));
     color: var(--white);
     border: none;
-    padding: 11px 20px;
+    padding: 11px 16px;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
     transition: var(--transition);
-    text-decoration: none;
     white-space: nowrap;
     flex-shrink: 0;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(255,45,120,0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
   }
   .btn-buy:hover {
     transform: translateY(-2px) scale(1.04);
     box-shadow: 0 8px 25px rgba(255,45,120,0.5);
+  }
+  .btn-buy.added {
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    box-shadow: 0 4px 15px rgba(0,201,167,0.35);
+    animation: addedPulse 0.4s ease;
+  }
+  @keyframes addedPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
   }
 
   .products-row-2 {
@@ -624,15 +651,7 @@
     position: relative;
     overflow: hidden;
   }
-  .promise::before {
-    content: '✨';
-    position: absolute;
-    font-size: 8rem;
-    opacity: 0.1;
-    right: 15%;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  .promise::before { content: '✨'; position: absolute; font-size: 8rem; opacity: 0.1; right: 15%; top: 50%; transform: translateY(-50%); }
   .promise-text h2 {
     font-family: 'Abril Fatface', serif;
     font-size: clamp(1.8rem, 4vw, 2.8rem);
@@ -641,12 +660,7 @@
     line-height: 1.15;
     margin-bottom: 0.8rem;
   }
-  .promise-text p {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.75;
-    max-width: 540px;
-  }
+  .promise-text p { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.75; max-width: 540px; }
   .btn-white {
     background: var(--white);
     color: var(--pink);
@@ -732,11 +746,7 @@
   .review-stars { color: var(--orange); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; display: block; }
   .review-text { font-size: 0.95rem; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 1.3rem; font-weight: 400; }
   .review-author { display: flex; align-items: center; gap: 12px; }
-  .review-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.9rem; color: var(--white);
-  }
+  .review-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; color: var(--white); }
   .review-card:nth-child(1) .review-avatar { background: linear-gradient(135deg, var(--pink), var(--purple)); }
   .review-card:nth-child(2) .review-avatar { background: linear-gradient(135deg, var(--teal), #0090FF); }
   .review-card:nth-child(3) .review-avatar { background: linear-gradient(135deg, var(--purple), var(--pink)); }
@@ -814,19 +824,8 @@
   .bb-text { color: var(--yellow); font-weight: 700; }
 
   /* ── CHATBOT ── */
-  .custom-chat {
-  width: 62px;
-  height: 62px;
-  padding: 0;
-  overflow: hidden;
-}
-
-.custom-chat img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
+  .custom-chat { width: 62px; height: 62px; padding: 0; overflow: hidden; }
+  .custom-chat img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
   .chatbot-bubble { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
 
   .chat-btn {
@@ -867,62 +866,23 @@
     color: var(--white);
   }
   .chat-header-info { display: flex; align-items: center; gap: 10px; }
-  .chat-avatar {
-    width: 38px; height: 38px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem;
-    border: 2px solid rgba(255,255,255,0.3);
-  }
+  .chat-avatar { width: 38px; height: 38px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; border: 2px solid rgba(255,255,255,0.3); }
   .chat-header-text .name { font-size: 0.85rem; font-weight: 700; }
   .chat-header-text .status { font-size: 0.62rem; display: flex; align-items: center; gap: 4px; opacity: 0.85; }
   .chat-header-text .status::before { content: ''; width: 7px; height: 7px; background: #4ADE80; border-radius: 50%; display: inline-block; }
   .chat-close { background: rgba(255,255,255,0.15); border: none; cursor: pointer; font-size: 0.9rem; color: var(--white); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
   .chat-close:hover { background: rgba(255,255,255,0.3); }
 
-  .chat-messages {
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: 280px;
-    overflow-y: auto;
-    background: var(--bg);
-  }
+  .chat-messages { padding: 14px; display: flex; flex-direction: column; gap: 10px; max-height: 280px; overflow-y: auto; background: var(--bg); }
   .chat-messages::-webkit-scrollbar { width: 4px; }
   .chat-messages::-webkit-scrollbar-thumb { background: var(--pink-light); border-radius: 2px; }
 
   .msg { max-width: 84%; padding: 10px 14px; font-size: 0.8rem; line-height: 1.55; border-radius: 16px; }
-  .msg.bot {
-    background: var(--white);
-    color: var(--navy);
-    border-radius: 4px 16px 16px 16px;
-    align-self: flex-start;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    border: 1px solid var(--border);
-  }
-  .msg.user {
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    color: var(--white);
-    border-radius: 16px 16px 4px 16px;
-    align-self: flex-end;
-    box-shadow: 0 4px 12px rgba(255,45,120,0.3);
-  }
-  .msg.typing {
-    background: var(--white);
-    border-radius: 4px 16px 16px 16px;
-    align-self: flex-start;
-    padding: 14px 18px;
-    border: 1px solid var(--border);
-  }
+  .msg.bot { background: var(--white); color: var(--navy); border-radius: 4px 16px 16px 16px; align-self: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border: 1px solid var(--border); }
+  .msg.user { background: linear-gradient(135deg, var(--pink), var(--purple)); color: var(--white); border-radius: 16px 16px 4px 16px; align-self: flex-end; box-shadow: 0 4px 12px rgba(255,45,120,0.3); }
+  .msg.typing { background: var(--white); border-radius: 4px 16px 16px 16px; align-self: flex-start; padding: 14px 18px; border: 1px solid var(--border); }
   .typing-dots { display: flex; gap: 5px; align-items: center; }
-  .typing-dots span {
-    width: 8px; height: 8px;
-    background: var(--pink);
-    border-radius: 50%;
-    animation: typingBounce 1.2s infinite;
-  }
+  .typing-dots span { width: 8px; height: 8px; background: var(--pink); border-radius: 50%; animation: typingBounce 1.2s infinite; }
   .typing-dots span:nth-child(2) { animation-delay: 0.2s; background: var(--purple); }
   .typing-dots span:nth-child(3) { animation-delay: 0.4s; background: var(--teal); }
   @keyframes typingBounce {
@@ -930,94 +890,21 @@
     30% { transform: translateY(-6px); }
   }
 
-  .chat-quick {
-    padding: 10px 12px 6px;
-    background: var(--white);
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .quick-btn {
-    background: none;
-    border: 1.5px solid rgba(255,45,120,0.25);
-    color: var(--pink);
-    font-size: 0.65rem;
-    padding: 5px 11px;
-    cursor: pointer;
-    transition: 0.25s;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    border-radius: 50px;
-    letter-spacing: 0.03em;
-  }
+  .chat-quick { padding: 10px 12px 6px; background: var(--white); border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px; }
+  .quick-btn { background: none; border: 1.5px solid rgba(255,45,120,0.25); color: var(--pink); font-size: 0.65rem; padding: 5px 11px; cursor: pointer; transition: 0.25s; font-family: 'Outfit', sans-serif; font-weight: 600; border-radius: 50px; letter-spacing: 0.03em; }
   .quick-btn:hover { background: rgba(255,45,120,0.08); border-color: var(--pink); }
 
-  .chat-input-row {
-    display: flex;
-    border-top: 1.5px solid var(--border);
-    background: var(--white);
-    padding: 6px;
-    gap: 6px;
-  }
-  .chat-input-row input {
-    flex: 1;
-    background: var(--bg);
-    border: 1.5px solid var(--border);
-    border-radius: 50px;
-    padding: 10px 16px;
-    color: var(--navy);
-    font-size: 0.8rem;
-    font-family: 'Outfit', sans-serif;
-    outline: none;
-    transition: border-color 0.3s;
-  }
+  .chat-input-row { display: flex; border-top: 1.5px solid var(--border); background: var(--white); padding: 6px; gap: 6px; }
+  .chat-input-row input { flex: 1; background: var(--bg); border: 1.5px solid var(--border); border-radius: 50px; padding: 10px 16px; color: var(--navy); font-size: 0.8rem; font-family: 'Outfit', sans-serif; outline: none; transition: border-color 0.3s; }
   .chat-input-row input:focus { border-color: var(--pink); }
   .chat-input-row input::placeholder { color: rgba(15,11,46,0.35); }
-  .chat-send {
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    border: none;
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    cursor: pointer;
-    color: var(--white);
-    font-size: 1rem;
-    transition: var(--transition);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+  .chat-send { background: linear-gradient(135deg, var(--pink), var(--purple)); border: none; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; color: var(--white); font-size: 1rem; transition: var(--transition); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .chat-send:hover { transform: scale(1.1); }
 
-  .notif-dot {
-    position: absolute;
-    top: 3px; right: 3px;
-    width: 16px; height: 16px;
-    background: var(--yellow);
-    border-radius: 50%;
-    border: 2px solid var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.5rem; font-weight: 800; color: var(--navy);
-  }
+  .notif-dot { position: absolute; top: 3px; right: 3px; width: 16px; height: 16px; background: var(--yellow); border-radius: 50%; border: 2px solid var(--bg); display: flex; align-items: center; justify-content: center; font-size: 0.5rem; font-weight: 800; color: var(--navy); }
 
   /* ── SCROLL TO TOP ── */
-  .scroll-top {
-    position: fixed;
-    bottom: 100px;
-    right: 26px;
-    width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    border: none;
-    color: var(--white);
-    border-radius: 50%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: var(--transition);
-    z-index: 998;
-    box-shadow: 0 4px 15px rgba(255,45,120,0.35);
-  }
+  .scroll-top { position: fixed; bottom: 100px; right: 26px; width: 44px; height: 44px; background: linear-gradient(135deg, var(--pink), var(--purple)); border: none; color: var(--white); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: var(--transition); z-index: 998; box-shadow: 0 4px 15px rgba(255,45,120,0.35); }
   .scroll-top.show { display: flex; }
   .scroll-top:hover { transform: scale(1.1) translateY(-3px); }
 
@@ -1026,55 +913,456 @@
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* ── MOBILE NAV OVERLAY ── */
-  .mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(15,11,46,0.5);
-    z-index: 997;
-    backdrop-filter: blur(4px);
-  }
+  .mobile-nav-overlay { display: none; position: fixed; inset: 0; background: rgba(15,11,46,0.5); z-index: 997; backdrop-filter: blur(4px); }
   .mobile-nav-overlay.open { display: block; }
 
-  .mobile-nav {
-    position: fixed;
-    top: 0; right: -100%;
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    background: var(--white);
-    z-index: 998;
-    padding: 80px 32px 32px;
-    transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: -20px 0 60px rgba(0,0,0,0.12);
-  }
+  .mobile-nav { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background: var(--white); z-index: 998; padding: 80px 32px 32px; transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: -20px 0 60px rgba(0,0,0,0.12); }
   .mobile-nav.open { right: 0; }
-  .mobile-nav .close-nav {
-    position: absolute;
-    top: 20px; right: 20px;
-    background: var(--bg);
-    border: none;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--navy);
-  }
-  .mobile-nav a {
-    display: block;
-    color: var(--navy);
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.3s, padding-left 0.3s;
-  }
+  .mobile-nav .close-nav { position: absolute; top: 20px; right: 20px; background: var(--bg); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--navy); }
+  .mobile-nav a { display: block; color: var(--navy); text-decoration: none; font-size: 1.1rem; font-weight: 700; padding: 14px 0; border-bottom: 1px solid var(--border); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s, padding-left 0.3s; }
   .mobile-nav a:hover { color: var(--pink); padding-left: 8px; }
   .mobile-nav .nav-cta { margin-top: 28px; }
+
+  /* ═══════════════════════════════════════
+     CART SIDEBAR STYLES
+  ═══════════════════════════════════════ */
+
+  /* Overlay */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,11,46,0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .cart-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Sidebar Panel */
+  .cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -520px;
+    width: 480px;
+    max-width: 100vw;
+    height: 100vh;
+    background: var(--white);
+    z-index: 1101;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.45s cubic-bezier(0.34, 1.2, 0.64, 1);
+    box-shadow: -20px 0 80px rgba(0,0,0,0.18);
+    overflow: hidden;
+  }
+  .cart-sidebar.open {
+    right: 0;
+  }
+
+  /* Cart Header */
+  .cart-sidebar-header {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .cart-sidebar-title {
+    font-family: 'Abril Fatface', serif;
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cart-item-count-badge {
+    background: rgba(255,255,255,0.25);
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .cart-close-btn {
+    background: rgba(255,255,255,0.18);
+    border: none;
+    color: var(--white);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .cart-close-btn:hover { background: rgba(255,255,255,0.32); }
+
+  /* Cart Body — scrollable */
+  .cart-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+  }
+  .cart-body::-webkit-scrollbar { width: 4px; }
+  .cart-body::-webkit-scrollbar-thumb { background: rgba(255,45,120,0.3); border-radius: 2px; }
+
+  /* Empty Cart */
+  .cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    text-align: center;
+    gap: 12px;
+    height: 100%;
+  }
+  .cart-empty-icon { font-size: 3.5rem; }
+  .cart-empty h3 { font-family: 'Abril Fatface', serif; font-size: 1.4rem; color: var(--navy); }
+  .cart-empty p { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* Cart Items List */
+  .cart-items-list {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cart-item {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1.5px solid var(--border);
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .cart-item:hover { border-color: rgba(255,45,120,0.2); }
+
+  .cart-item-emoji {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+
+  .cart-item-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .cart-item-name {
+    font-family: 'Abril Fatface', serif;
+    font-size: 1rem;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cart-item-inspired {
+    font-size: 0.62rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cart-item-price {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--pink);
+    margin-top: 4px;
+  }
+
+  .cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--white);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .qty-btn:hover { border-color: var(--pink); color: var(--pink); background: rgba(255,45,120,0.05); }
+  .qty-val {
+    font-weight: 800;
+    font-size: 0.95rem;
+    min-width: 22px;
+    text-align: center;
+    color: var(--navy);
+  }
+
+  .cart-item-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 4px;
+    border-radius: 50%;
+    transition: 0.2s;
+    flex-shrink: 0;
+  }
+  .cart-item-remove:hover { color: var(--pink); background: rgba(255,45,120,0.08); }
+
+  /* Checkout Section */
+  .cart-checkout {
+    flex-shrink: 0;
+    border-top: 2px solid var(--border);
+    background: var(--bg);
+  }
+
+  .checkout-toggle-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 14px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .checkout-toggle-btn:hover { background: rgba(123,63,228,0.04); }
+  .checkout-toggle-icon { transition: transform 0.3s ease; }
+  .checkout-toggle-icon.open { transform: rotate(180deg); }
+
+  .checkout-form-wrap {
+    display: none;
+    padding: 18px 20px 0;
+  }
+  .checkout-form-wrap.open { display: block; }
+
+  .checkout-section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .form-row.single { grid-template-columns: 1fr; }
+
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .form-input {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    color: var(--navy);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .form-input:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px rgba(255,45,120,0.1);
+  }
+  .form-input::placeholder { color: rgba(15,11,46,0.3); }
+
+  /* Order Summary inside checkout */
+  .order-summary {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin: 14px 0 10px;
+    border: 1.5px solid var(--border);
+  }
+  .order-summary-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .order-line {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .order-line:last-of-type { border-bottom: none; }
+  .order-line-name {
+    font-size: 0.78rem;
+    color: var(--navy);
+    font-weight: 500;
+    flex: 1;
+  }
+  .order-line-qty {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .order-line-price {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .order-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    margin-top: 6px;
+    border-top: 2px solid var(--border);
+  }
+  .order-total-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+  .order-total-amount {
+    font-family: 'Abril Fatface', serif;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shipping-note {
+    font-size: 0.68rem;
+    color: #16A34A;
+    font-weight: 600;
+    text-align: center;
+    padding: 6px 0 2px;
+    display: block;
+  }
+
+  /* Razorpay placeholder */
+  .razorpay-key-note {
+    background: linear-gradient(135deg, rgba(255,45,120,0.06), rgba(123,63,228,0.06));
+    border: 1.5px dashed rgba(123,63,228,0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 0.7rem;
+    color: var(--purple);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .razorpay-key-note code {
+    font-family: monospace;
+    background: rgba(123,63,228,0.1);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.68rem;
+    color: var(--purple);
+    font-weight: 700;
+  }
+
+  .btn-pay {
+    width: 100%;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: var(--white);
+    border: none;
+    padding: 16px 24px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 14px;
+    transition: var(--transition);
+    box-shadow: 0 6px 25px rgba(255,45,120,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .btn-pay:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(255,45,120,0.55);
+  }
+  .btn-pay:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .pay-trust-note {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 8px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  /* Cart subtotal bar (always visible above checkout toggle) */
+  .cart-subtotal-bar {
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-subtotal-label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+  .cart-subtotal-value { font-family: 'Abril Fatface', serif; font-size: 1.3rem; background: linear-gradient(135deg, var(--pink), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
@@ -1092,12 +1380,7 @@
     nav, .header-icons { display: none; }
     .hamburger { display: flex; }
 
-    .hero {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      padding: 40px 5% 50px;
-      text-align: center;
-    }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 40px 5% 50px; text-align: center; }
     .hero-eyebrow { display: inline-flex; }
     .hero p { margin: 0 auto 1.8rem; }
     .hero-cta { justify-content: center; }
@@ -1126,6 +1409,9 @@
 
     .chat-window { width: 310px; right: -6px; }
     .scroll-top { bottom: 96px; }
+
+    .cart-sidebar { width: 100vw; }
+    .form-row { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 480px) {
@@ -1166,7 +1452,10 @@
   <div class="header-icons">
     <button title="Search">🔍</button>
     <button title="Account">👤</button>
-    <button title="Cart">🛒</button>
+    <button class="cart-header-btn" onclick="openCart()" title="Cart">
+      🛒
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
   </div>
   <button class="hamburger" onclick="openMobileNav()" title="Menu">
     <span></span><span></span><span></span>
@@ -1184,6 +1473,108 @@
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
   <div class="nav-cta">
     <a href="#shop" onclick="closeMobileNav()" class="btn-primary" style="display:block; text-align:center;">Shop Now 🌸</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     CART SIDEBAR
+═══════════════════════════════════ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+
+  <!-- Cart Header -->
+  <div class="cart-sidebar-header">
+    <div class="cart-sidebar-title">
+      🛒 Your Cart
+      <span class="cart-item-count-badge" id="cartSidebarCount">0 items</span>
+    </div>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+
+  <!-- Cart Body (items or empty state) -->
+  <div class="cart-body" id="cartBody">
+    <!-- Empty state -->
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">🛒</div>
+      <h3>Your cart is empty</h3>
+      <p>Add a fragrance from our collection to get started.</p>
+    </div>
+    <!-- Items list (populated by JS) -->
+    <div class="cart-items-list" id="cartItemsList" style="display:none;"></div>
+  </div>
+
+  <!-- Checkout Footer (hidden when empty) -->
+  <div class="cart-checkout" id="cartCheckout" style="display:none;">
+
+    <!-- Subtotal quick view -->
+    <div class="cart-subtotal-bar">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-value" id="cartSubtotal">₹0</span>
+    </div>
+
+    <!-- Toggle Checkout Form -->
+    <button class="checkout-toggle-btn" onclick="toggleCheckoutForm()">
+      <span>🧾 Fill Delivery & Pay</span>
+      <span class="checkout-toggle-icon" id="checkoutToggleIcon">▼</span>
+    </button>
+
+    <div class="checkout-form-wrap" id="checkoutFormWrap">
+
+      <span class="checkout-section-label">📦 Delivery Information</span>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="custName">Full Name *</label>
+          <input class="form-input" type="text" id="custName" placeholder="Rahul Sharma" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="custPhone">Contact Number *</label>
+          <input class="form-input" type="tel" id="custPhone" placeholder="+91 98765 43210" required>
+        </div>
+      </div>
+
+      <div class="form-row single">
+        <div class="form-group">
+          <label class="form-label" for="custEmail">Email Address *</label>
+          <input class="form-input" type="email" id="custEmail" placeholder="rahul@example.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="custPincode">Pincode *</label>
+          <input class="form-input" type="text" id="custPincode" placeholder="110001" maxlength="6" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="custCity">City</label>
+          <input class="form-input" type="text" id="custCity" placeholder="New Delhi">
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary">
+        <span class="order-summary-title">📋 Order Summary</span>
+        <div id="orderSummaryLines"></div>
+        <div class="order-total-row">
+          <span class="order-total-label">Total Amount</span>
+          <span class="order-total-amount" id="orderTotalAmount">₹0</span>
+        </div>
+      </div>
+
+      <span class="shipping-note" id="shippingNote">✅ You qualify for FREE shipping!</span>
+
+      <!-- Razorpay API Key Placeholder -->
+      <div class="razorpay-key-note">
+        🔑 <strong>Razorpay Integration:</strong> Replace <code>YOUR_RAZORPAY_KEY_ID</code> in the script below with your actual key from the Razorpay Dashboard. Set your <code>webhook_secret</code> on the server side for order verification.
+      </div>
+
+      <button class="btn-pay" id="payBtn" onclick="initiateRazorpayPayment()">
+        💳 Pay Securely via Razorpay
+      </button>
+
+      <p class="pay-trust-note">🔒 100% Secure · UPI · Cards · Net Banking · Wallets</p>
+
+    </div>
   </div>
 </div>
 
@@ -1244,6 +1635,7 @@
   </div>
 
   <div class="products-grid">
+    <!-- PRODUCT 1 -->
     <div class="product-card fade-in">
       <div class="product-img-wrap">
         <span class="product-badge">🔥 Bestseller</span>
@@ -1262,11 +1654,12 @@
             <span class="product-mrp">MRP ₹1,999</span>
             <span class="product-discount">✅ 40% OFF</span>
           </div>
-          <a href="https://pages.razorpay.com/pl_SpIh8RwhJSuYLu/view" class="btn-buy" target="_blank">Buy Now</a>
+          <button class="btn-buy" onclick="addToCart('Ombré Leather', 1199, '🤎', 'Inspired by Tom Ford', this)">🛒 Add to Cart</button>
         </div>
       </div>
     </div>
 
+    <!-- PRODUCT 2 -->
     <div class="product-card fade-in">
       <div class="product-img-wrap">
         <span class="product-badge teal">🆕 New Arrival</span>
@@ -1285,11 +1678,12 @@
             <span class="product-mrp">MRP ₹1,999</span>
             <span class="product-discount">✅ 40% OFF</span>
           </div>
-          <a href="https://pages.razorpay.com/pl_SpIh8RwhJSuYLu/view" class="btn-buy" target="_blank">Buy Now</a>
+          <button class="btn-buy" onclick="addToCart('Khamrah', 1199, '🌹', 'Inspired by Lattafa', this)">🛒 Add to Cart</button>
         </div>
       </div>
     </div>
 
+    <!-- PRODUCT 3 -->
     <div class="product-card fade-in">
       <div class="product-img-wrap">
         <img src="img3.jpg" alt="Imagination" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -1307,13 +1701,14 @@
             <span class="product-mrp">MRP ₹1,999</span>
             <span class="product-discount">✅ 40% OFF</span>
           </div>
-          <a href="https://pages.razorpay.com/pl_SpIh8RwhJSuYLu/view" class="btn-buy" target="_blank">Buy Now</a>
+          <button class="btn-buy" onclick="addToCart('Imagination', 1199, '🍋', 'Inspired by Louis Vuitton', this)">🛒 Add to Cart</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="products-row-2">
+    <!-- PRODUCT 4 -->
     <div class="product-card fade-in">
       <div class="product-img-wrap">
         <span class="product-badge orange">💕 For Her</span>
@@ -1332,11 +1727,12 @@
             <span class="product-mrp">MRP ₹1,999</span>
             <span class="product-discount">✅ 40% OFF</span>
           </div>
-          <a href="https://pages.razorpay.com/pl_SpIh8RwhJSuYLu/view" class="btn-buy" target="_blank">Buy Now</a>
+          <button class="btn-buy" onclick="addToCart('Good Girl', 1199, '☕', 'Inspired by Carolina Herrera', this)">🛒 Add to Cart</button>
         </div>
       </div>
     </div>
 
+    <!-- PRODUCT 5 -->
     <div class="product-card fade-in">
       <div class="product-img-wrap">
         <span class="product-badge">🌙 Arabic Luxury</span>
@@ -1355,119 +1751,120 @@
             <span class="product-mrp">MRP ₹1,999</span>
             <span class="product-discount">✅ 40% OFF</span>
           </div>
-          <a href="https://pages.razorpay.com/pl_SpIh8RwhJSuYLu/view" class="btn-buy" target="_blank">Buy Now</a>
+          <button class="btn-buy" onclick="addToCart('Oud & Roses', 1199, '🌹', 'Original Blend', this)">🛒 Add to Cart</button>
         </div>
       </div>
     </div>
   </div>
+
   <div class="products-grid" style="margin-top:20px;">
 
-  <!-- PRODUCT 6 -->
-  <div class="product-card fade-in">
-    <div class="product-img-wrap">
-      <span class="product-badge">🍃 Fresh Drop</span>
-      <img src="img6.jpg" alt="Erba Pura">
-    </div>
-    <div class="product-info">
-      <span class="product-inspired">✨ Inspired by Xerjoff</span>
-      <h3 class="product-name">Erba Pura</h3>
-      <p class="product-notes">Fruity · Citrus · Vanilla · Amber · Musk</p>
-      <div class="product-footer">
-        <div class="product-price-wrap">
-          <span class="product-price">₹1,199</span>
-          <span class="product-mrp">MRP ₹1,999</span>
-          <span class="product-discount">✅ 40% OFF</span>
+    <!-- PRODUCT 6 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge">🍃 Fresh Drop</span>
+        <img src="img6.jpg" alt="Erba Pura">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">✨ Inspired by Xerjoff</span>
+        <h3 class="product-name">Erba Pura</h3>
+        <p class="product-notes">Fruity · Citrus · Vanilla · Amber · Musk</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">✅ 40% OFF</span>
+          </div>
+          <button class="btn-buy" onclick="addToCart('Erba Pura', 1199, '🍊', 'Inspired by Xerjoff', this)">🛒 Add to Cart</button>
         </div>
-        <a href="#" class="btn-buy">Buy Now</a>
       </div>
     </div>
-  </div>
 
-  <!-- PRODUCT 7 -->
-  <div class="product-card fade-in">
-    <div class="product-img-wrap">
-      <span class="product-badge teal">🍒 Bold Pick</span>
-      <img src="img7.jpg" alt="Lost Cherry">
-    </div>
-    <div class="product-info">
-      <span class="product-inspired">✨ Inspired by Tom Ford</span>
-      <h3 class="product-name">Lost Cherry</h3>
-      <p class="product-notes">Cherry · Almond · Rose · Tonka · Vanilla</p>
-      <div class="product-footer">
-        <div class="product-price-wrap">
-          <span class="product-price">₹1,199</span>
-          <span class="product-mrp">MRP ₹1,999</span>
-          <span class="product-discount">✅ 40% OFF</span>
+    <!-- PRODUCT 7 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge teal">🍒 Bold Pick</span>
+        <img src="img7.jpg" alt="Lost Cherry">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">✨ Inspired by Tom Ford</span>
+        <h3 class="product-name">Lost Cherry</h3>
+        <p class="product-notes">Cherry · Almond · Rose · Tonka · Vanilla</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">✅ 40% OFF</span>
+          </div>
+          <button class="btn-buy" onclick="addToCart('Lost Cherry', 1199, '🍒', 'Inspired by Tom Ford', this)">🛒 Add to Cart</button>
         </div>
-        <a href="#" class="btn-buy">Buy Now</a>
       </div>
     </div>
-  </div>
 
-  <!-- PRODUCT 8 -->
-  <div class="product-card fade-in">
-    <div class="product-img-wrap">
-      <span class="product-badge orange">🔥 Popular</span>
-      <img src="img8.jpg" alt="Most Wanted">
-    </div>
-    <div class="product-info">
-      <span class="product-inspired">✨ Inspired by Azzaro</span>
-      <h3 class="product-name">Most Wanted</h3>
-      <p class="product-notes">Toffee · Cardamom · Amberwood · Vanilla</p>
-      <div class="product-footer">
-        <div class="product-price-wrap">
-          <span class="product-price">₹1,199</span>
-          <span class="product-mrp">MRP ₹1,999</span>
-          <span class="product-discount">✅ 40% OFF</span>
+    <!-- PRODUCT 8 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge orange">🔥 Popular</span>
+        <img src="img8.jpg" alt="Most Wanted">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">✨ Inspired by Azzaro</span>
+        <h3 class="product-name">Most Wanted</h3>
+        <p class="product-notes">Toffee · Cardamom · Amberwood · Vanilla</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">✅ 40% OFF</span>
+          </div>
+          <button class="btn-buy" onclick="addToCart('Most Wanted', 1199, '🔥', 'Inspired by Azzaro', this)">🛒 Add to Cart</button>
         </div>
-        <a href="#" class="btn-buy">Buy Now</a>
       </div>
     </div>
-  </div>
 
-  <!-- PRODUCT 9 -->
-  <div class="product-card fade-in">
-    <div class="product-img-wrap">
-      <span class="product-badge">💎 Premium</span>
-      <img src="img9.jpg" alt="Blue Oud">
-    </div>
-    <div class="product-info">
-      <span class="product-inspired">✨ Arabic Blend</span>
-      <h3 class="product-name">Blue Oud</h3>
-      <p class="product-notes">Oud · Bergamot · Incense · Amber · Woods</p>
-      <div class="product-footer">
-        <div class="product-price-wrap">
-          <span class="product-price">₹1,199</span>
-          <span class="product-mrp">MRP ₹1,999</span>
-          <span class="product-discount">✅ 40% OFF</span>
+    <!-- PRODUCT 9 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge">💎 Premium</span>
+        <img src="img9.jpg" alt="Blue Oud">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">✨ Arabic Blend</span>
+        <h3 class="product-name">Blue Oud</h3>
+        <p class="product-notes">Oud · Bergamot · Incense · Amber · Woods</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">✅ 40% OFF</span>
+          </div>
+          <button class="btn-buy" onclick="addToCart('Blue Oud', 1199, '💙', 'Arabic Blend', this)">🛒 Add to Cart</button>
         </div>
-        <a href="#" class="btn-buy">Buy Now</a>
       </div>
     </div>
-  </div>
 
-  <!-- PRODUCT 10 -->
-  <div class="product-card fade-in">
-    <div class="product-img-wrap">
-      <span class="product-badge teal">🌊 Exotic</span>
-      <img src="img10.jpg" alt="Oud Maracuja">
-    </div>
-    <div class="product-info">
-      <span class="product-inspired">✨ Niche Inspired</span>
-      <h3 class="product-name">Oud Maracuja</h3>
-      <p class="product-notes">Passionfruit · Oud · Rose · Leather · Amber</p>
-      <div class="product-footer">
-        <div class="product-price-wrap">
-          <span class="product-price">₹1,199</span>
-          <span class="product-mrp">MRP ₹1,999</span>
-          <span class="product-discount">✅ 40% OFF</span>
+    <!-- PRODUCT 10 -->
+    <div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <span class="product-badge teal">🌊 Exotic</span>
+        <img src="img10.jpg" alt="Oud Maracuja">
+      </div>
+      <div class="product-info">
+        <span class="product-inspired">✨ Niche Inspired</span>
+        <h3 class="product-name">Oud Maracuja</h3>
+        <p class="product-notes">Passionfruit · Oud · Rose · Leather · Amber</p>
+        <div class="product-footer">
+          <div class="product-price-wrap">
+            <span class="product-price">₹1,199</span>
+            <span class="product-mrp">MRP ₹1,999</span>
+            <span class="product-discount">✅ 40% OFF</span>
+          </div>
+          <button class="btn-buy" onclick="addToCart('Oud Maracuja', 1199, '🌊', 'Niche Inspired', this)">🛒 Add to Cart</button>
         </div>
-        <a href="#" class="btn-buy">Buy Now</a>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </section>
 
 <!-- BENEFITS -->
@@ -1523,22 +1920,22 @@
     <div class="step fade-in">
       <div class="step-num">01</div>
       <h4>Choose Your Scent</h4>
-      <p>Browse our curated collection of inspired Extrait de Parfums and find your perfect match.</p>
+      <p>Browse our curated collection and click "Add to Cart" for your perfect match.</p>
     </div>
     <div class="step fade-in">
       <div class="step-num">02</div>
-      <h4>Secure Payment</h4>
-      <p>Pay safely via Razorpay — UPI, Cards, Net Banking all accepted. 100% secure checkout.</p>
+      <h4>Review Your Cart</h4>
+      <p>Open your cart, adjust quantities, and fill in your delivery details.</p>
     </div>
     <div class="step fade-in">
       <div class="step-num">03</div>
-      <h4>Fast Dispatch</h4>
-      <p>Orders packed and dispatched within 24 hours. Pan-India delivery in 3–5 business days.</p>
+      <h4>Secure Payment</h4>
+      <p>Pay safely via Razorpay — UPI, Cards, Net Banking all accepted. 100% secure.</p>
     </div>
     <div class="step fade-in">
       <div class="step-num">04</div>
       <h4>Wear & Love</h4>
-      <p>Apply on pulse points, enjoy the compliments, and experience luxury beyond the label.</p>
+      <p>Dispatched within 24 hours. Delivered pan-India in 3–5 business days.</p>
     </div>
   </div>
 </section>
@@ -1660,10 +2057,13 @@
     </div>
   </div>
   <button class="chat-btn custom-chat" onclick="toggleChat()" title="Chat with Aria">
-  <img src="ai.png" alt="Chat">
-  <span class="notif-dot" id="notifDot">1</span>
-</button>
+    <img src="ai.png" alt="Chat">
+    <span class="notif-dot" id="notifDot">1</span>
+  </button>
 </div>
+
+<!-- Razorpay SDK — loads when needed -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
 // ── SCROLL ANIMATIONS ──
@@ -1686,6 +2086,242 @@ function closeMobileNav() {
   document.getElementById('mobileNav').classList.remove('open');
   document.getElementById('navOverlay').classList.remove('open');
   document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════════
+//  CART SYSTEM
+// ═══════════════════════════════════════════════
+let cart = []; // { id, name, price, emoji, inspired, qty }
+
+function generateId(name) {
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+function addToCart(name, price, emoji, inspired, btnEl) {
+  const id = generateId(name);
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, name, price, emoji, inspired, qty: 1 });
+  }
+
+  // Button feedback
+  const original = btnEl.innerHTML;
+  btnEl.innerHTML = '✅ Added!';
+  btnEl.classList.add('added');
+  setTimeout(() => {
+    btnEl.innerHTML = original;
+    btnEl.classList.remove('added');
+  }, 1400);
+
+  renderCart();
+  openCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  renderCart();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.id !== id);
+  }
+  renderCart();
+}
+
+function getCartTotal() {
+  return cart.reduce((s, i) => s + i.price * i.qty, 0);
+}
+
+function getCartCount() {
+  return cart.reduce((s, i) => s + i.qty, 0);
+}
+
+function renderCart() {
+  const count = getCartCount();
+  const total = getCartTotal();
+
+  // Header badge
+  const badge = document.getElementById('cartBadge');
+  badge.textContent = count;
+  badge.classList.toggle('show', count > 0);
+
+  // Sidebar count
+  document.getElementById('cartSidebarCount').textContent = count === 0 ? '0 items' : `${count} item${count > 1 ? 's' : ''}`;
+
+  // Empty / list toggle
+  const isEmpty = cart.length === 0;
+  document.getElementById('cartEmpty').style.display = isEmpty ? 'flex' : 'none';
+  document.getElementById('cartItemsList').style.display = isEmpty ? 'none' : 'flex';
+  document.getElementById('cartCheckout').style.display = isEmpty ? 'none' : 'block';
+
+  // Items list
+  const list = document.getElementById('cartItemsList');
+  list.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-emoji">${item.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-inspired">${item.inspired}</div>
+        <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+      </div>
+      <div class="cart-item-controls">
+        <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+        <span class="qty-val">${item.qty}</span>
+        <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart('${item.id}')" title="Remove">🗑</button>
+    </div>
+  `).join('');
+
+  // Subtotal bar
+  document.getElementById('cartSubtotal').textContent = '₹' + total.toLocaleString('en-IN');
+
+  // Order summary lines
+  const summaryLines = document.getElementById('orderSummaryLines');
+  if (summaryLines) {
+    summaryLines.innerHTML = cart.map(item => `
+      <div class="order-line">
+        <span class="order-line-name">${item.emoji} ${item.name}</span>
+        <span class="order-line-qty">×${item.qty}</span>
+        <span class="order-line-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</span>
+      </div>
+    `).join('');
+  }
+
+  // Total amount
+  const totalEl = document.getElementById('orderTotalAmount');
+  if (totalEl) totalEl.textContent = '₹' + total.toLocaleString('en-IN');
+
+  // Shipping note
+  const shippingNote = document.getElementById('shippingNote');
+  if (shippingNote) {
+    if (total >= 1499) {
+      shippingNote.innerHTML = '✅ You qualify for <strong>FREE Shipping</strong>!';
+      shippingNote.style.color = '#16A34A';
+    } else {
+      const needed = 1499 - total;
+      shippingNote.innerHTML = `Add ₹${needed.toLocaleString('en-IN')} more for <strong>FREE Shipping</strong>`;
+      shippingNote.style.color = 'var(--orange)';
+    }
+  }
+}
+
+function openCart() {
+  document.getElementById('cartSidebar').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartSidebar').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleCheckoutForm() {
+  const wrap = document.getElementById('checkoutFormWrap');
+  const icon = document.getElementById('checkoutToggleIcon');
+  const isOpen = wrap.classList.toggle('open');
+  icon.classList.toggle('open', isOpen);
+}
+
+// ═══════════════════════════════════════════════
+//  RAZORPAY INTEGRATION
+//  ⬇ Replace 'YOUR_RAZORPAY_KEY_ID' with your
+//    actual Razorpay Key ID from the dashboard.
+//  ⬇ For production, create an order on your
+//    backend and pass the order_id here.
+// ═══════════════════════════════════════════════
+const RAZORPAY_KEY_ID = 'YOUR_RAZORPAY_KEY_ID'; // 🔑 Replace this
+
+function validateCheckoutForm() {
+  const name    = document.getElementById('custName').value.trim();
+  const phone   = document.getElementById('custPhone').value.trim();
+  const email   = document.getElementById('custEmail').value.trim();
+  const pincode = document.getElementById('custPincode').value.trim();
+
+  if (!name)    { alert('Please enter your full name.'); document.getElementById('custName').focus(); return false; }
+  if (!phone || phone.replace(/\D/g,'').length < 10) { alert('Please enter a valid 10-digit phone number.'); document.getElementById('custPhone').focus(); return false; }
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); document.getElementById('custEmail').focus(); return false; }
+  if (!pincode || pincode.length !== 6) { alert('Please enter a valid 6-digit pincode.'); document.getElementById('custPincode').focus(); return false; }
+
+  return true;
+}
+
+function initiateRazorpayPayment() {
+  if (cart.length === 0) { alert('Your cart is empty!'); return; }
+  if (!validateCheckoutForm()) return;
+
+  const total   = getCartTotal();
+  const name    = document.getElementById('custName').value.trim();
+  const phone   = document.getElementById('custPhone').value.trim();
+  const email   = document.getElementById('custEmail').value.trim();
+  const pincode = document.getElementById('custPincode').value.trim();
+  const city    = document.getElementById('custCity').value.trim();
+
+  const productNames = cart.map(i => `${i.name} ×${i.qty}`).join(', ');
+
+  const options = {
+    key: RAZORPAY_KEY_ID,              // 🔑 Your Razorpay Key ID
+    amount: total * 100,               // Amount in paise (₹1 = 100 paise)
+    currency: 'INR',
+    name: 'Scent Verse',
+    description: productNames,
+    image: 'img1.jpg',                 // Your logo/image URL
+
+    // ── For production: create an order on your backend
+    // order_id: 'order_XXXXXXXXXX',   // Pass Razorpay order_id from server
+
+    handler: function (response) {
+      // ✅ Payment Success
+      // response.razorpay_payment_id — save this for verification
+      // response.razorpay_order_id   — if order_id was set
+      // response.razorpay_signature  — verify on your backend
+      cart = [];
+      renderCart();
+      closeCart();
+      alert(`🎉 Payment successful! Your order is confirmed.\nPayment ID: ${response.razorpay_payment_id}\n\nThank you, ${name}! You'll receive a confirmation on ${email}.`);
+    },
+
+    prefill: {
+      name:    name,
+      email:   email,
+      contact: phone.replace(/\D/g,''),
+    },
+
+    notes: {
+      products: productNames,
+      pincode:  pincode,
+      city:     city,
+    },
+
+    theme: {
+      color: '#FF2D78',
+    },
+
+    modal: {
+      ondismiss: function() {
+        console.log('Payment modal closed by user.');
+      }
+    }
+  };
+
+  try {
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function (response) {
+      alert('Payment failed. Please try again.\nReason: ' + response.error.description);
+    });
+    rzp.open();
+  } catch(e) {
+    alert('Could not initialise Razorpay. Please ensure your API Key is set correctly.');
+    console.error(e);
+  }
 }
 
 // ── CHATBOT ──
@@ -1771,21 +2407,15 @@ function removeTyping() {
 
 async function sendToAI(msg) {
   showTyping();
-
   try {
     const res = await fetch("/api/chat", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: msg })
     });
-
     const data = await res.json();
-
     removeTyping();
     addMsg(data.reply, "bot");
-
   } catch (err) {
     removeTyping();
     addMsg("Something went wrong. Try again.", "bot");
