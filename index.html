@@ -2069,38 +2069,12 @@
      LOGIN MODAL
 ═══════════════════════════════════════ -->
 
-        <button class="btn-login-submit" onclick="handleEmailLogin()">Sign In →</button>
-        <p class="login-footer-note">Don't have an account? <a href="#" style="color:var(--pink);font-weight:700" onclick="handleGoogleLogin()">Sign up with Google</a><br>By continuing you agree to our Terms & Privacy Policy.</p>
-      </div>
+        
+       
 
       <!-- Phone OTP Panel -->
-      <div class="login-panel" id="panelPhone">
-        <div class="login-form-group">
-          <label class="login-label">Mobile Number</label>
-          <div class="otp-row">
-            <input class="login-input" type="tel" id="loginPhone" placeholder="+91 98765 43210" maxlength="13">
-            <button class="btn-send-otp" id="sendOtpBtn" onclick="sendOTP()">Send OTP</button>
-          </div>
-        </div>
-        <div class="otp-input-row" id="otpInputRow">
-          <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this, 0)">
-          <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this, 1)">
-          <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this, 2)">
-          <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this, 3)">
-          <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this, 4)">
-          <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this, 5)">
-        </div>
-        <button class="btn-login-submit" id="verifyOtpBtn" style="display:none" onclick="verifyOTP()">Verify & Sign In →</button>
-        <button class="btn-login-submit" id="requestOtpSubmitBtn" onclick="sendOTP()" style="margin-top:18px">Get OTP →</button>
-        <p class="login-footer-note">We'll send a 6-digit OTP to your mobile number.<br>Standard SMS rates may apply.</p>
-      </div>
+     
 
-    </div>
-  </div>
-</div>
-
-<!-- Login Success Toast -->
-<div class="login-success-toast" id="loginToast">✅ Logged in successfully! Welcome 🌸</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -3003,93 +2977,12 @@ function closeLogin() {
   document.body.style.overflow = '';
 }
 
-function handleLoginOverlayClick(e) {
-  if (e.target === document.getElementById('loginOverlay')) closeLogin();
-}
 
-function switchLoginTab(tab) {
-  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.login-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
-  document.getElementById('panel' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
-}
+ 
 
-function handleGoogleLogin() {
-  // In a real app, this opens Google OAuth popup
-  // For demo, simulate success
-  const mockEmail = 'user@gmail.com';
-  loginSuccess(mockEmail.split('@')[0]);
-}
+  
 
-function handleEmailLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const pass  = document.getElementById('loginPassword').value.trim();
-  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
-  if (!pass || pass.length < 4) { alert('Please enter your password.'); return; }
-  loginSuccess(email.split('@')[0]);
-}
-
-let otpSent = false;
-let mockOTP = '';
-let otpTimer = null;
-
-function sendOTP() {
-  const phone = document.getElementById('loginPhone').value.replace(/\D/g,'');
-  if (phone.length < 10) { alert('Please enter a valid 10-digit mobile number.'); return; }
-
-  // Mock OTP generation
-  mockOTP = Math.floor(100000 + Math.random() * 900000).toString();
-
-  // Show OTP input
-  document.getElementById('otpInputRow').classList.add('show');
-  document.getElementById('verifyOtpBtn').style.display = 'block';
-  document.getElementById('requestOtpSubmitBtn').style.display = 'none';
-
-  const sendBtn = document.getElementById('sendOtpBtn');
-  sendBtn.disabled = true;
-
-  // Countdown
-  let secs = 30;
-  sendBtn.textContent = `Resend (${secs}s)`;
-  otpTimer = setInterval(() => {
-    secs--;
-    if (secs <= 0) {
-      clearInterval(otpTimer);
-      sendBtn.disabled = false;
-      sendBtn.textContent = 'Resend OTP';
-    } else {
-      sendBtn.textContent = `Resend (${secs}s)`;
-    }
-  }, 1000);
-
-  otpSent = true;
-  alert(`📲 Demo OTP sent to +${phone}\n\nYour OTP is: ${mockOTP}\n\n(In production, a real SMS would be sent via your OTP provider)`);
-
-  // Auto-focus first digit
-  setTimeout(() => document.querySelector('.otp-digit').focus(), 100);
-}
-
-function otpNext(input, index) {
-  input.value = input.value.replace(/\D/g,'');
-  if (input.value.length === 1) {
-    const digits = document.querySelectorAll('.otp-digit');
-    if (index < digits.length - 1) digits[index + 1].focus();
-  }
-}
-
-function verifyOTP() {
-  const digits = Array.from(document.querySelectorAll('.otp-digit')).map(d => d.value).join('');
-  if (digits.length < 6) { alert('Please enter the full 6-digit OTP.'); return; }
-  if (digits !== mockOTP) { alert('❌ Incorrect OTP. Please try again.'); return; }
-  const phone = document.getElementById('loginPhone').value.replace(/\D/g,'');
-  loginSuccess('User ' + phone.slice(-4));
-}
-
-function loginSuccess(name) {
-  loggedInUser = name;
-  closeLogin();
-
-  // Update header — show avatar, hide account btn
+  // Update headr — show avatar, hide account btn
   const initials = name.replace(/[^a-zA-Z\s]/g,'').trim().split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) || 'U';
   const avatarBtn = document.getElementById('userAvatarBtn');
   const accountBtn = document.getElementById('accountBtn');
