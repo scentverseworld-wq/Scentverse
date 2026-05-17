@@ -135,12 +135,38 @@
 
   .header-icons { display: flex; gap: 0.8rem; align-items: center; }
   .header-icons button {
-    background: none; border: none; cursor: pointer;
-    font-size: 1.15rem; padding: 6px;
-    transition: transform 0.3s;
-    color: var(--cream);
+    background: transparent; border: none; outline: none; box-shadow: none;
+    cursor: pointer; font-size: 1.15rem; padding: 6px;
+    transition: transform 0.3s; color: var(--cream);
+    border-radius: 0;
   }
-  .header-icons button:hover { transform: scale(1.2); }
+  .header-icons button:hover { transform: scale(1.2); background: transparent; }
+  .header-icons button:focus { outline: none; background: transparent; }
+
+  .icon-btn {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    padding: 6px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream) !important;
+    transition: color 0.3s, transform 0.3s !important;
+    border-radius: 0 !important;
+  }
+  .icon-btn:hover {
+    color: var(--gold-light) !important;
+    transform: scale(1.15) !important;
+    background: transparent !important;
+  }
+  .icon-btn:focus { outline: none !important; background: transparent !important; }
+  .icon-btn svg { display: block; }
+
+  nav a.nav-active { color: var(--gold-light); }
+  nav a.nav-active::after { transform: scaleX(1); }
 
   .cart-header-btn {
     position: relative;
@@ -148,11 +174,14 @@
     border: none;
     cursor: pointer;
     font-size: 1.15rem;
-    padding: 6px;
-    transition: transform 0.3s;
+    padding: 7px;
+    transition: color 0.3s, transform 0.3s;
     color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .cart-header-btn:hover { transform: scale(1.2); }
+  .cart-header-btn:hover { color: var(--gold-light); transform: scale(1.15); }
   .cart-badge {
     position: absolute;
     top: 0px;
@@ -1329,18 +1358,27 @@
 <header id="siteHeader">
   <a href="#" class="logo">Scent<span>Verse</span></a>
   <nav>
-    <a href="#">Home</a>
+    <a href="#" class="nav-active">Home</a>
     <a href="#shop">Shop</a>
-    <a href="#benefits">Why Us</a>
-    <a href="#reviews">Reviews</a>
+    <a href="#collections">Collections</a>
+    <a href="#benefits">About Us</a>
     <a href="#contact">Contact</a>
   </nav>
   <div class="header-icons">
-    <button title="Search" onclick="openSearch()">🔍</button>
-    <button class="user-avatar-btn" id="userAvatarBtn" title="Account"></button>
-    <button id="accountBtn" title="Account">👤</button>
+    <button title="Search" onclick="openSearch()" class="icon-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
+    <button id="accountBtn" title="Account" class="icon-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </svg>
+    </button>
     <button class="cart-header-btn" onclick="openCart()" title="Cart">
-      🛒
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
       <span class="cart-badge" id="cartBadge">0</span>
     </button>
   </div>
@@ -1355,8 +1393,8 @@
   <button class="close-nav" onclick="closeMobileNav()">✕</button>
   <a href="#" onclick="closeMobileNav()">Home</a>
   <a href="#shop" onclick="closeMobileNav()">Shop</a>
-  <a href="#benefits" onclick="closeMobileNav()">Why Us</a>
-  <a href="#reviews" onclick="closeMobileNav()">Reviews</a>
+  <a href="#collections" onclick="closeMobileNav()">Collections</a>
+  <a href="#benefits" onclick="closeMobileNav()">About Us</a>
   <a href="#contact" onclick="closeMobileNav()">Contact</a>
   <a href="#" onclick="closeMobileNav(); openSearch();" style="color:var(--gold-light)">🔍 Search Products</a>
   <div class="nav-cta">
