@@ -2316,20 +2316,37 @@ function initiateRazorpayPayment() {
   const pincode      = document.getElementById('custPincode').value.trim();
   const city         = document.getElementById('custCity').value.trim();
   const productNames = cart.map(i => `${i.name} ×${i.qty}`).join(', ');
+  const address = document.getElementById('custAddress').value.trim();
 
   const options = {
     key:         RAZORPAY_KEY_ID,
     amount:      total * 100,
     currency:    'INR',
     name:        'Scent Verse',
-    description: productNames,
+    description: "Scent Verse Order",
     image:       'img1.jpg',
 
     handler: function (response) {
       cart = [];
       renderCart();
       closeCart();
-      alert(`🎉 Payment successful! Your order is confirmed.\nPayment ID: ${response.razorpay_payment_id}\n\nThank you, ${name}! Confirmation sent to ${email}.`);
+     alert(
+`🎉 Payment Successful!
+
+🧾 Order Details:
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+
+📍 Address:
+${address}, ${city} - ${pincode}
+
+🛍️ Products:
+${productNames}
+
+🆔 Payment ID:
+${response.razorpay_payment_id}`
+);
     },
 
     prefill: {
@@ -2339,10 +2356,14 @@ function initiateRazorpayPayment() {
     },
 
     notes: {
-      products: productNames,
-      pincode:  pincode,
-      city:     city,
-    },
+  customer_name: name,
+  phone: phone,
+  email: email,
+  address: address,
+  pincode: pincode,
+  city: city,
+  products: productNames
+},
 
     theme: { color: '#FF2D78' },
 
