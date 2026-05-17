@@ -57,6 +57,8 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     overflow: hidden;
+    position: relative;
+    z-index: 1000;
   }
   @keyframes gradientSlide {
     0% { background-position: 0% 50%; }
@@ -233,7 +235,7 @@
     position: relative;
     overflow: hidden;
     background: url('newbg.jpg') center center / cover no-repeat;
-    margin-top: -70px;
+    margin-top: 0;
   }
 
   /* Directional overlay: dark left (text), lighter right (product image) */
@@ -1364,6 +1366,9 @@
   </span>
 </div>
 
+<!-- HERO WRAPPER: header floats over hero only, announcement bar stays above -->
+<div style="position:relative;">
+
 <!-- HEADER -->
 <header id="siteHeader">
   <a href="#" class="logo">Scent<span>Verse</span></a>
@@ -1564,6 +1569,8 @@
     </div>
   </div>
 </section>
+<!-- END HERO WRAPPER -->
+</div>
 
 <!-- STATS -->
 <div class="stats-bar">
