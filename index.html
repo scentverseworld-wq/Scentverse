@@ -278,10 +278,15 @@
   position: absolute;
   inset: 0;
 
-  background: url('newbg.jpg') center/cover no-repeat;
+  background:
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0.95) 35%,  /* text area clean */
+      rgba(255,255,255,0.7) 60%,
+      rgba(255,255,255,0.2) 100%  /* image visible */
+    ),
+    url('man.png') center/cover no-repeat;
 
-  opacity: 0.65;
-  filter: contrast(1.1); /* adjust later */
   z-index: 0;
 }
  .hero > * {
