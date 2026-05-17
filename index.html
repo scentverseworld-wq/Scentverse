@@ -965,9 +965,6 @@
 .cart-sidebar.open {
   transform: translateX(0); /* slide in */
 }
-  .cart-sidebar.open {
-    right: 0;
-  }
 
   /* Cart Header */
   .cart-sidebar-header {
@@ -1014,8 +1011,9 @@
   .cart-body {
   flex: 1;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* ✅ ADD THIS LINE */
+  -webkit-overflow-scrolling: touch;
   padding: 0 15px;
+  height: 0; /* ✅ IMPORTANT FIX */
 }
   .cart-body::-webkit-scrollbar { width: 4px; }
   .cart-body::-webkit-scrollbar-thumb { background: rgba(255,45,120,0.3); border-radius: 2px; }
@@ -1177,9 +1175,12 @@
   .checkout-toggle-icon.open { transform: rotate(180deg); }
 
   .checkout-form-wrap {
-    display: none;
-    padding: 18px 20px 0;
-  }
+  display: none;
+  padding: 18px 20px 0;
+
+  max-height: 60vh;
+  overflow-y: auto;
+}
   .checkout-form-wrap.open { display: block; }
 
   .checkout-section-label {
