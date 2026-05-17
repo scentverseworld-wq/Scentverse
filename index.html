@@ -273,6 +273,20 @@
     position: relative;
     overflow: hidden;
   }
+ .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: url('man.png') center/cover no-repeat;
+
+  opacity: 0.25; /* adjust later */
+  z-index: 0;
+}
+ .hero > * {
+  position: relative;
+  z-index: 1;
+}
 
   .blob {
     position: absolute;
