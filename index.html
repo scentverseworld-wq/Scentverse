@@ -2068,35 +2068,7 @@
 <!-- ═══════════════════════════════════════
      LOGIN MODAL
 ═══════════════════════════════════════ -->
-<div class="login-overlay" id="loginOverlay" onclick="handleLoginOverlayClick(event)">
-  <div class="login-modal" id="loginModal">
-    <div class="login-modal-header">
-      <h2>Welcome Back 🌸</h2>
-      <p>Sign in to track orders & get exclusive offers</p>
-      <button class="login-modal-close" onclick="closeLogin()">✕</button>
-    </div>
-    <div class="login-modal-body">
-      <!-- Tabs -->
-      <div class="login-tabs">
-        <button class="login-tab active" id="tabGmail" onclick="switchLoginTab('gmail')">📧 Gmail</button>
-        <button class="login-tab" id="tabPhone" onclick="switchLoginTab('phone')">📱 Mobile OTP</button>
-      </div>
 
-      <!-- Gmail Panel -->
-      <div class="login-panel active" id="panelGmail">
-        <button class="btn-google" onclick="handleGoogleLogin()">
-          <span class="google-icon">🌐</span>
-          Continue with Google
-        </button>
-        <div class="login-divider">or sign in with email</div>
-        <div class="login-form-group">
-          <label class="login-label">Email Address</label>
-          <input class="login-input" type="email" id="loginEmail" placeholder="you@gmail.com">
-        </div>
-        <div class="login-form-group">
-          <label class="login-label">Password</label>
-          <input class="login-input" type="password" id="loginPassword" placeholder="••••••••">
-        </div>
         <button class="btn-login-submit" onclick="handleEmailLogin()">Sign In →</button>
         <p class="login-footer-note">Don't have an account? <a href="#" style="color:var(--pink);font-weight:700" onclick="handleGoogleLogin()">Sign up with Google</a><br>By continuing you agree to our Terms & Privacy Policy.</p>
       </div>
