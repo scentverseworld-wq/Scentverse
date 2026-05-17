@@ -945,7 +945,9 @@
   .cart-sidebar {
   position: fixed;
   top: 0;
-  right: -520px;
+  right: 0; /* ✅ FIXED */
+  transform: translateX(100%); /* instead of right:-520px */
+
   width: 480px;
   max-width: 100vw;
   height: 100vh;
@@ -956,7 +958,12 @@
   background: var(--white);
   z-index: 1101;
 
-  overflow: hidden; /* important */
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.cart-sidebar.open {
+  transform: translateX(0); /* slide in */
 }
   .cart-sidebar.open {
     right: 0;
@@ -1007,6 +1014,7 @@
   .cart-body {
   flex: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* ✅ ADD THIS LINE */
   padding: 0 15px;
 }
   .cart-body::-webkit-scrollbar { width: 4px; }
@@ -1379,6 +1387,11 @@
     .stat { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 14px; }
     .stat:nth-last-child(-n+2) { border-bottom: none; }
   }
+  @media (max-width: 768px) {
+  .cart-sidebar {
+    width: 100vw;
+  }
+}
 
   @media (max-width: 768px) {
     header { padding: 0 4%; height: 64px; }
@@ -1427,11 +1440,6 @@
     section { padding: 60px 4%; }
     .stats-bar { padding: 20px 4%; }
   }
-  @media (max-height: 700px) {
-  .cart-sidebar {
-    overflow-y: auto;
-  }
-}
 </style>
 </head>
 <body>
